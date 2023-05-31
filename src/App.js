@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import QuizApp from './QuizApp';
+import AdminOptions from './AdminOptions';
+import ViewQuestions from "./AdminOperations/ViewQuestions";
+import CreateQuestions from "./AdminOperations/CreateQuestions";
+import EditQuestions from "./AdminOperations/EditQuestions";
+import AttemptQuiz from "./UserOperations/AttemptQuiz";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<QuizApp />} />
+            <Route path="/admin" element={<AdminOptions />} />
+            <Route path="/admin/view-questions" element={<ViewQuestions/>} />
+            <Route path="/admin/create-questions" element={<CreateQuestions/>} />
+            <Route  path="/admin/edit/:id" element={<EditQuestions/>} />
+            <Route path={"/user"} element={<AttemptQuiz/>} />
+        </Routes>
+      </Router>
   );
-}
+};
 
 export default App;
